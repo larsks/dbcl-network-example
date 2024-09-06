@@ -1,0 +1,8 @@
+# connect device eth0 to network "networkb"
+ip addr add 10.101.2.97/16 dev eth0
+# connect device eth1 to network "networka"
+ip addr add 10.223.0.1/24 dev eth1
+
+# host startup commands
+iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
+

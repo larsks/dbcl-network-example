@@ -1,0 +1,5 @@
+# connect device eth0 to network "networka"
+ip addr add 10.223.0.7/24 dev eth0
+
+# routes
+ip route add default via 10.223.0.1

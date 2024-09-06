@@ -1,0 +1,11 @@
+strict graph  {
+networka;
+networkb;
+machinea [shape=box];
+machineb [shape=box];
+machinec [shape=box];
+networka -- machineb;
+networka -- machinec;
+networkb -- machinea;
+networkb -- machineb;
+}

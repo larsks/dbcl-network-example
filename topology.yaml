@@ -1,0 +1,28 @@
+networks:
+  networka:
+    cidr: 10.223.0.0/24
+  networkb:
+    cidr: 10.101.0.0/16
+
+hosts:
+  machinea:
+    interfaces:
+      - network: networkb
+        address: 10.101.0.40
+    startup: |
+      ip route add 10.223.0.0/24 via 10.101.2.97
+
+  machineb:
+    autogateway: false
+    interfaces:
+      - network: networkb
+        address: 10.101.2.97
+      - network: networka
+        address: 10.223.0.1
+    startup: |
+      iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
+
+  machinec:
+    interfaces:
+      - network: networka
+        address: 10.223.0.7
